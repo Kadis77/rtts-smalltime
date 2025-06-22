@@ -454,7 +454,8 @@ export class Helpers {
 
     // Calculate and show the current seconds if required.
     if (game.settings.get('smalltime', 'time-format') == 24 && game.settings.get('smalltime', 'show-seconds') == true) {
-      const currentWorldTime = game.time.worldTime + ST_Config.EpochOffset;
+      const offset = game.settings.get('smalltime', 'rtts-seconds-offset');
+      const currentWorldTime = game.time.worldTime - offset + ST_Config.EpochOffset;
       let seconds;
       if (currentWorldTime < 0) {
         seconds = 60 - Math.abs(Math.trunc(((currentWorldTime % 86400) % 3600) % 60));
