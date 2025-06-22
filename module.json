@@ -1,9 +1,9 @@
 {
   "name": "smalltime",
   "id": "smalltime",
-  "title": "SmallTime",
+  "title": "SmallTime RTTS",
   "description": "A small module for displaying and controlling the current time of day.",
-  "version": "1.0.0",
+  "version": "0.0.3",
   "readme": "https://github.com/unsoluble/smalltime/blob/main/README.md",
   "bugs": "https://github.com/unsoluble/smalltime/issues",
   "changelog": "https://github.com/unsoluble/smalltime/releases",
