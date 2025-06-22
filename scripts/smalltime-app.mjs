@@ -188,6 +188,7 @@ Hooks.on('init', () => {
   });
 
   game.settings.register('smalltime', 'rtts-seconds-offset', {
+    name: 'RTTS Seconds Offset',
     scope: 'world',
     config: true,
     type: Number,
