@@ -187,6 +187,13 @@ Hooks.on('init', () => {
     default: ST_Config.MaxDarknessDefault,
   });
 
+  game.settings.register('smalltime', 'rtts-seconds-offset', {
+    scope: 'world',
+    config: true,
+    type: Number,
+    default: ST_Config.RttsSecondsOffset,
+  });
+
   game.settings.register('smalltime', 'min-darkness', {
     scope: 'world',
     config: true,
@@ -627,12 +634,12 @@ Hooks.on('renderSettingsConfig', (obj) => {
     }
   });
 
-  // Live toggle the seconds display.
-  $('input[name="smalltime.show-seconds"]').on('change', function () {
-    if (this.checked) {
-      $('#secondsSpan').css('display', 'inline');
+  // Toggle the Show Seconds setting with changes to the time format.
+  $('select[name="smalltime.time-format"]').on('change', function () {
+    if (this.value == 24) {
+      $('input[name="smalltime.show-seconds"]').parent().parent().css('display', 'flex');
     } else {
-      $('#secondsSpan').css('display', 'none');
+      $('input[name="smalltime.show-seconds"]').parent().parent().css('display', 'none');
     }
   });
 

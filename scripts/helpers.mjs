@@ -23,6 +23,7 @@ ST_Config.coreDarknessColor = 2368584;
 ST_Config.PinOffset = 83;
 ST_Config.EpochOffset = 0;
 ST_Config.WFRP4eOffset = 30;
+ST_Config.RttsSecondsOffset = 0;
 ST_Config.DasSchwarzeAugeOffset = 16;
 ST_Config.TaskbarOffset = 50;
 
@@ -399,8 +400,8 @@ export class Helpers {
   // Convert worldTime (seconds elapsed) into an integer time of day.
   static getWorldTimeAsDayTime() {
     const currentWorldTime = game.time.worldTime + ST_Config.EpochOffset;
-    const worldCreatedOn = Math.floor(game.pf2e.worldClock.worldCreatedOn / 1000);
-    const dayTime = Math.abs(Math.trunc(((currentWorldTime - worldCreatedOn) % 86400) / 60));
+    const offset = game.settings.get('smalltime', 'rtts-seconds-offset');
+    const dayTime = Math.abs(Math.trunc(((currentWorldTime - offset) % 86400) / 60));
     if (currentWorldTime < 0) {
       return 1440 - dayTime;
     } else return dayTime;
@@ -422,9 +423,6 @@ export class Helpers {
     }
     if (game.modules.get('calendar-weather')?.active) {
       Object.assign(calendarProviders, { cw: 'Calendar/Weather' });
-    }
-    if (game.system.id === 'pf2e') {
-      Object.assign(calendarProviders, { pf2e: 'PF2E ' });
     }
 
     return calendarProviders;
