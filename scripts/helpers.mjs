@@ -399,7 +399,8 @@ export class Helpers {
   // Convert worldTime (seconds elapsed) into an integer time of day.
   static getWorldTimeAsDayTime() {
     const currentWorldTime = game.time.worldTime + ST_Config.EpochOffset;
-    const dayTime = Math.abs(Math.trunc((currentWorldTime % 86400) / 60));
+    const worldCreatedOn = Math.floor(game.pf2e.worldClock.worldCreatedOn / 1000);
+    const dayTime = Math.abs(Math.trunc(((currentWorldTime - worldCreatedOn) % 86400) / 60));
     if (currentWorldTime < 0) {
       return 1440 - dayTime;
     } else return dayTime;
